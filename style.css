@@ -1,0 +1,441 @@
+/* Сброс стилей */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+/* Общие стили */
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font: 16px/1.5 Arial, Helvetica, sans-serif;
+  color: #333;
+  background-color: Snow;
+  transition: color 0.5s ease, background-color 0.5s ease;
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+header div {
+  margin: 1em 0;
+  display: table;
+}
+
+header h1 {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-weight: 900;
+  font-size: 2em;
+  position: relative;
+  padding: 0 6px;
+  /* Маленькая тень вниз */
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+}
+
+header div h1::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0.15em;
+  left: 0;
+  width: 100%;
+  height: 0.4em;
+  background-color: #7dcefc;
+  z-index: -1;
+  transform: skewX(-15deg);
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+section {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 5px 10px;
+}
+
+#tips {
+  border: 1px solid #d0d1d2;
+  display: table;
+  padding: 5px;
+  margin: 0;
+  border-radius: 2px;
+}
+
+#tips span {
+  padding: 5px;
+  vertical-align: middle;
+  color: #fff;
+  background-color: #353535;
+  font-size: 0.7em;
+  border-radius: 2px;
+}
+
+#btn-wrap {
+  margin: 5px 0 10px 0;
+  /* Шаманский метод убрать лишние отступы между кнопками, добавляемые браузером */
+  display: flex;
+  flex-wrap: wrap;
+  /* Позволяет кнопкам переноситься на новый ряд */
+}
+
+.btn {
+  background-color: #353535;
+  color: #fff;
+  cursor: pointer;
+  padding: 5px 10px;
+  margin: 2px 2px 2px 0;
+  display: inline-block;
+  font-size: 14px;
+  vertical-align: middle;
+  /* Выравнивание кнопок по вертикали */
+}
+
+/* Обрезка текста в длинных кнопках при ширине экрана меньше 700px */
+@media (max-width:700px) {
+  .long-button {
+    max-width: 105px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+}
+
+.btn,
+#help-icon-container span {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#traduzione,
+#search-res {
+  color: #03c03c;
+}
+
+#search-container {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+}
+
+#search-tr {
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid #ddd;
+  padding: 5px;
+  transition: all ease-out 0.2s;
+  position: relative;
+  font-size: 18px;
+}
+
+#search-tr::placeholder {
+  color: #ccc;
+  font-size: 14px;
+}
+
+#search-tr:focus {
+  outline: none;
+  border-color: #aaa;
+}
+
+.clear-input {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  /*  right: 5px;*/
+  right: calc(5px + 1%);
+  /* 5px + 1% от ширины поля ввода */
+  cursor: pointer;
+  color: #aaa;
+}
+
+/* Максимальная высота выпадающего списка ui-autocomplete */
+.ui-autocomplete {
+  max-height: 200px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.ui-menu {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  /* схлопнуть border */
+  border-collapse: collapse;
+}
+
+.ui-menu .ui-menu-item-wrapper {
+
+  /* Максимальная ширина выпадающего списка ui-autocomplete */
+  max-width: 660px;
+  width: 100%;
+  border-color: transparent !important;
+}
+
+li.ui-menu-item {
+  font-size: 13px;
+  font-family: "Open Sans", sans-serif;
+}
+
+/* Dark mode */
+body .darkmode {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  cursor: pointer;
+}
+
+.dark {
+  display: none;
+}
+
+.dark-mode {
+  background-color: #202225;
+  color: #f9f9f9;
+}
+
+.dark-mode h1 {
+  color: #fff;
+}
+
+.dark-mode header h1::after {
+  background-color: #03c03c;
+}
+
+.dark-mode #help-icon path {
+  fill: #fff;
+}
+
+.dark-mode .text {
+  color: #333;
+}
+
+.dark-mode footer {
+  background-color: #202225;
+}
+
+.dark-mode footer a span {
+  color: #fff;
+  background-image: linear-gradient(to right, #03c03c, #03c03c);
+}
+
+#top-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  z-index: 999;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  visibility: hidden;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+#top-panel.active {
+  top: 0;
+  visibility: visible;
+}
+
+.inner {
+  display: flex;
+  align-items: start;
+}
+
+.text {
+  flex-grow: 1;
+  padding: 20px;
+  /* отступы со всех сторон */
+}
+
+.text h3 {
+  text-align: center;
+}
+
+.text p {
+  text-indent: 2em;
+  /* Отступ в 2 em для красной строки */
+}
+
+.text ul {
+  padding-left: 2em;
+  list-style-type: none;
+}
+
+.text ul li::before {
+  content: "\2022";
+  margin-right: 5px;
+  color: #03c03c;
+}
+
+.inner a.github {
+  text-decoration: none;
+  padding-top: 20px;
+  padding-right: 20px;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+#help-icon-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+#help-icon-container span {
+  margin-left: 3px;
+}
+
+.help-icon {
+  animation: help-icon-animation 1s ease-in-out infinite;
+  animation-play-state: paused;
+  /* Изначально останавливаем анимацию */
+}
+
+/* При наведении на #help-icon-container запускаем анимацию .help-icon */
+#help-icon-container:hover .help-icon {
+  animation-play-state: running;
+}
+
+@keyframes help-icon-animation {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+
+}
+
+/* Попытка сохранить анимацию на тачскрине */
+.running {
+  animation-play-state: running !important;
+}
+
+.paused {
+  animation-play-state: paused !important;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  flex: 0 0 auto;
+  padding: 10px;
+  background-color: Snow;
+  border-top: 1px solid #d0d1d2;
+}
+
+#left {}
+
+#right {
+  display: flex;
+  align-items: center;
+  margin-left: 3px;
+}
+
+footer a span,
+.termini-musicali span {
+  color: black;
+  position: relative;
+  background-image: linear-gradient(to right, #7dcefc, #7dcefc);
+  background-size: 100% 2px;
+  /* Высота и толщина подчёркивания */
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  /* Начало подчёркивания снизу */
+  transition: background-size 0.3s ease-in-out;
+  /* Анимация изменения высоты подчёркивания */
+}
+
+footer a:hover span,
+.termini-musicali:hover span {
+  background-size: 100% 4px;
+  /* Увеличиваем высоту подчёркивания при наведении */
+}
+
+.sito {
+  display: inline-block;
+  margin-right: 3px;
+}
+
+.dizionario {
+  display: inline-block;
+}
+
+/* Медиазапрос для экранов шириной менее 768px */
+@media (max-width:768px) {
+  body {
+    font-size: 16px;
+    /* Без изменений */
+  }
+
+  header h1,
+  .text h3 {
+    font-size: 1.2em;
+    /* Увеличение на 20% на small screens */
+  }
+
+  #search-tr {
+    font-size: 16px;
+    padding: 4px;
+  }
+
+  .light svg,
+  .dark svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .svg-icon {
+    width: 27px;
+    height: 27px;
+    border: 1px solid #333333;
+    border-radius: 50px;
+    padding: 3px;
+  }
+
+  .text {
+    padding: 10px;
+  }
+
+  .inner a.github {
+    padding-right: 10px;
+    padding-top: 10px;
+  }
+
+  .btn {
+    font-size: 12px;
+    padding: 3px 8px;
+  }
+
+  .help-icon {
+    animation-duration: 0.5s;
+    /* Увеличенная скорость анимации иконки на смартфоне */
+  }
+
+}
